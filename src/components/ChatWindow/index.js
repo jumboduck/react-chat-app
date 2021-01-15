@@ -7,11 +7,14 @@ const ChatWindow = (props) => {
         <>
             <h2>Conversation with {props.friend}</h2>
             <ul>
-                {props.messages.map((message) => (
-                    <li key={message}>{message}</li>
+                {props.messages.map((message, index) => (
+                    <Message key={index} message={message} />
                 ))}
             </ul>
-            <MsgForm />
+            <MsgForm
+                addNewMessage={props.addNewMessage}
+                messages={props.messages}
+            />
         </>
     );
 };

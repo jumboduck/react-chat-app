@@ -10,20 +10,31 @@ const ChatApp = () => {
         3: "Simon",
     };
 
-    const messages = {
-        1: ["message1", "message2", "message3"],
-        2: [],
-        3: [],
-    };
+    const [messages, setMessages] = useState([
+        "message1",
+        "message2",
+        "message3",
+    ]);
+
+    function addNewMessage(chatLog, newMessage) {
+        setMessages([...chatLog, newMessage]);
+    }
+
+    // const [messages, setMessages] = useState({
+    //     1: ["message1", "message2", "message3"],
+    //     2: [],
+    //     3: [],
+    // });
 
     return (
         <>
             <h1>Chat Window</h1>
             <ChatWindow
-                messages={messages[currentConv]}
+                messages={messages}
                 friend={friends[currentConv]}
+                id={currentConv}
+                addNewMessage={addNewMessage}
             />
-            ;
         </>
     );
 };
