@@ -7,9 +7,13 @@ body {
     display: flex;
 }
 
+.friends-title {
+    text-align: center;
+}
+
 .friend-list {
     flex: 0 0 15rem;
-    background-color: pink;
+    background-color: #f4f4f4;
     height: 100vh;
 }
 
@@ -73,6 +77,13 @@ ul.message-list {
 
 .send-message {
     flex: 0 0 2rem;
+    background-color: #addae6;
+    cursor: pointer;
+    border-left: 0 !important;
+}
+
+.send-message:hover {
+    background-color: #74b2c4;
 }
 
 .message-input,

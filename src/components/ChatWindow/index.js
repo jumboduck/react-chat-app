@@ -9,7 +9,7 @@ const ChatWindow = (props) => {
         if (messageList) {
             messageList.current.addEventListener("DOMNodeInserted", (event) => {
                 const { currentTarget: target } = event;
-                target.scroll({ top: target.scrollHeight, behavior: "smooth" });
+                target.scroll({ top: target.scrollHeight });
             });
         }
     }, []);

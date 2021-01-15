@@ -8,7 +8,7 @@ const FriendList = (props) => {
     };
     return (
         <div className="friend-list">
-            <h2>Friend list</h2>
+            <h2 className="friends-title">friends</h2>
 
             {props.friends.map((friend) => (
                 <button
