@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const MsgForm = (props) => {
-    const input = React.useRef();
+    const input = useRef();
 
     const handleSubmit = (event) => {
         event.preventDefault();
