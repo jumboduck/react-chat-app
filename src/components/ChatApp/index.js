@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import ChatWindow from "../ChatWindow";
+import FriendList from "../FriendList";
 
 const ChatApp = () => {
     const [currentConv, setCurrentConv] = useState(1);
 
-    const friends = {
-        1: "Daniel",
-        2: "Issaaf",
-        3: "Simon",
-    };
+    const friends = [
+        { id: 1, name: "Daniel" },
+        { id: 2, name: "Issaaf" },
+        { id: 3, name: "Simon" },
+    ];
 
     const [messages, setMessages] = useState([
         "message1",
@@ -16,9 +17,8 @@ const ChatApp = () => {
         "message3",
     ]);
 
-    function addNewMessage(chatLog, newMessage) {
-        setMessages([...chatLog, newMessage]);
-    }
+    const addNewMessage = (newMessage) =>
+        setMessages([...messages, newMessage]);
 
     // const [messages, setMessages] = useState({
     //     1: ["message1", "message2", "message3"],
@@ -29,10 +29,10 @@ const ChatApp = () => {
     return (
         <>
             <h1>Chat Window</h1>
+            <FriendList friends={friends} currentConv={currentConv} />
             <ChatWindow
                 messages={messages}
-                friend={friends[currentConv]}
-                id={currentConv}
+                currentConv={currentConv}
                 addNewMessage={addNewMessage}
             />
         </>
