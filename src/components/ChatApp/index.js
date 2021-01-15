@@ -11,20 +11,17 @@ const ChatApp = () => {
         { id: 3, name: "Simon" },
     ];
 
-    const [messages, setMessages] = useState([
-        "message1",
-        "message2",
-        "message3",
-    ]);
+    const addNewMessage = (id, newMessage) => {
+        let newMessages = { ...messages };
+        newMessages[id].push(newMessage);
+        setMessages(newMessages);
+    };
 
-    const addNewMessage = (newMessage) =>
-        setMessages([...messages, newMessage]);
-
-    // const [messages, setMessages] = useState({
-    //     1: ["message1", "message2", "message3"],
-    //     2: [],
-    //     3: [],
-    // });
+    const [messages, setMessages] = useState({
+        1: ["hi"],
+        2: [],
+        3: [],
+    });
 
     return (
         <>
