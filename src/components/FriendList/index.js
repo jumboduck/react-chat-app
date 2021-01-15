@@ -7,7 +7,7 @@ const FriendList = (props) => {
         props.setCurrentConv(button);
     };
     return (
-        <>
+        <div className="friend-list">
             <h2>Friend list</h2>
 
             {props.friends.map((friend) => (
@@ -24,7 +24,7 @@ const FriendList = (props) => {
                     {friend.name}
                 </button>
             ))}
-        </>
+        </div>
     );
 };
 

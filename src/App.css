@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+body {
+    font-size: 20px;
+    height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chat-container {
+    display: flex;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.friend-list {
+    width: 20%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.friend-btn {
+    width: 100%;
+    border: 0;
+    padding: 0.8rem;
+    margin: 0.1rem 0;
+    cursor: pointer;
+    background-color: #addae6;
+    color: #464646;
+    text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.friend-selected {
+    background-color: #74b2c4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.friend-btn:hover {
+    background-color: #74b2c4;
+}
+
+.chat-window {
+    width: 100%;
+    padding: 0 0.4rem;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.message {
+    background-color: #addae6;
+    color: #464646;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+    float: right;
+    clear: right;
+}
+
+ul.message-list {
+    list-style-type: none;
+    overflow: auto;
+    padding-inline-start: 0;
+}
+
+.message-form {
+    width: 100%;
 }

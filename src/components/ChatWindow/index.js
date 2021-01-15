@@ -4,8 +4,8 @@ import MsgForm from "../MsgForm";
 
 const ChatWindow = (props) => {
     return (
-        <>
-            <ul>
+        <div class="chat-window">
+            <ul className="message-list">
                 {props.messages[props.currentConv].map((message, index) => (
                     <Message key={index} message={message} />
                 ))}
@@ -15,7 +15,7 @@ const ChatWindow = (props) => {
                 messages={props.messages}
                 currentConv={props.currentConv}
             />
-        </>
+        </div>
     );
 };
 
