@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatWindow from "../ChatWindow";
 
 const ChatApp = () => {
+    const [currentConv, setCurrentConv] = useState(1);
+
+    const friends = {
+        1: "Daniel",
+        2: "Issaaf",
+        3: "Simon",
+    };
+
+    const messages = {
+        1: ["message1", "message2", "message3"],
+        2: [],
+        3: [],
+    };
+
     return (
         <>
             <h1>Chat Window</h1>
-            <ChatWindow />;
+            <ChatWindow
+                messages={messages[currentConv]}
+                friend={friends[currentConv]}
+            />
+            ;
         </>
     );
 };

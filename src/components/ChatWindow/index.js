@@ -2,11 +2,14 @@ import React from "react";
 import Message from "../Message";
 import MsgForm from "../MsgForm";
 
-const ChatWindow = () => {
+const ChatWindow = (props) => {
     return (
         <>
+            <h2>Conversation with {props.friend}</h2>
             <ul>
-                <Message />
+                {props.messages.map((message) => (
+                    <li key={message}>{message}</li>
+                ))}
             </ul>
             <MsgForm />
         </>
