@@ -26,7 +26,11 @@ const ChatApp = () => {
     return (
         <>
             <h1>Chat Window</h1>
-            <FriendList friends={friends} currentConv={currentConv} />
+            <FriendList
+                friends={friends}
+                currentConv={currentConv}
+                setCurrentConv={setCurrentConv}
+            />
             <ChatWindow
                 messages={messages}
                 currentConv={currentConv}
