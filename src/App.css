@@ -1,5 +1,5 @@
 body {
-    font-size: 20px;
+    font-size: 15px;
     height: 100%;
 }
 
@@ -8,7 +8,9 @@ body {
 }
 
 .friend-list {
-    width: 20%;
+    flex: 0 0 15rem;
+    background-color: pink;
+    height: 100vh;
 }
 
 .friend-btn {
@@ -31,12 +33,21 @@ body {
 }
 
 .chat-window {
-    width: 100%;
     padding: 0 0.4rem;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
     justify-content: flex-end;
+    flex: 1 1 auto;
+    max-height: 100vh;
+}
+
+ul.message-list {
+    list-style-type: none;
+    padding-inline-start: 0;
+    overflow-x: scroll;
+    overflow-y: auto;
+    width: 100%;
 }
 
 .message {
@@ -44,17 +55,28 @@ body {
     color: #464646;
     border-radius: 5px;
     margin-bottom: 0.5rem;
-    padding: 0.2rem;
+    margin-right: 1rem;
+    padding: 0.4rem;
     float: right;
-    clear: right;
-}
-
-ul.message-list {
-    list-style-type: none;
-    overflow: auto;
-    padding-inline-start: 0;
+    clear: both;
 }
 
 .message-form {
     width: 100%;
+    display: flex;
+}
+
+.message-input {
+    flex: 1 1 auto;
+}
+
+.send-message {
+    flex: 0 0 2rem;
+}
+
+.message-input,
+.send-message {
+    padding: 0.5rem;
+    border-radius: 0;
+    border: 1px solid #464646;
 }

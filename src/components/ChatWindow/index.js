@@ -4,7 +4,7 @@ import MsgForm from "../MsgForm";
 
 const ChatWindow = (props) => {
     return (
-        <div class="chat-window">
+        <div className="chat-window">
             <ul className="message-list">
                 {props.messages[props.currentConv].map((message, index) => (
                     <Message key={index} message={message} />

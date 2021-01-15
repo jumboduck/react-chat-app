@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 const FriendList = (props) => {
     const handleClick = (event) => {
         event.preventDefault();
-        const button = event.target.dataset.conv;
-        props.setCurrentConv(button);
+        const newConv = event.target.dataset.conv;
+        props.setCurrentConv(newConv);
     };
     return (
         <div className="friend-list">

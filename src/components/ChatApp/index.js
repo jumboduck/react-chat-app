@@ -25,7 +25,6 @@ const ChatApp = () => {
 
     return (
         <>
-            <h1>Chat Window</h1>
             <div className="chat-container">
                 <FriendList
                     friends={friends}

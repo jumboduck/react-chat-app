@@ -14,8 +14,10 @@ const MsgForm = (props) => {
 
     return (
         <form className="message-form" onSubmit={handleSubmit}>
-            <input type="text" ref={input} />
-            <button type="submit">Send</button>
+            <input type="text" ref={input} className="message-input" />
+            <button type="submit" className="send-message">
+                Send
+            </button>
         </form>
     );
 };
