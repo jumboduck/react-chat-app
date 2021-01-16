@@ -16,13 +16,18 @@ const MsgForm = (props) => {
 
     return (
         <form className="message-form" onSubmit={handleSubmit}>
+            <label htmlFor="message-input" className="sr-only">
+                Message:
+            </label>
             <input
+                id="message-input"
                 type="text"
                 ref={input}
                 className="message-input"
                 placeholder="Type here..."
             />
             <button type="submit" className="send-message">
+                <span className="sr-only">send</span>
                 <FontAwesomeIcon icon={faPaperPlane} />
             </button>
         </form>

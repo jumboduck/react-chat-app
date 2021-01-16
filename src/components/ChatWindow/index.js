@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import Message from "../Message";
 import MsgForm from "../MsgForm";
 
 const ChatWindow = (props) => {
-    // const currentFriend = props.friends.find(
-    //     (friend) => friend.id === props.currentConv
-    // ).name;
-    // console.log(currentFriend);
+    const currentFriend = props.friends.find(
+        (friend) => friend.id === props.currentConv
+    ).name;
     const messageList = useRef(null);
 
     useEffect(() => {
@@ -20,17 +18,20 @@ const ChatWindow = (props) => {
 
     return (
         <div className="chat-window">
-            <ul className="message-list" ref={messageList}>
-                {props.messages[props.currentConv].length !== 0 ? (
-                    props.messages[props.currentConv].map((message, index) => (
-                        <Message key={index} message={message} />
-                    ))
-                ) : (
-                    <li className="no-message">
-                        This is the beginning of your conversation
-                    </li>
-                )}
-            </ul>
+            {props.messages[props.currentConv].length !== 0 ? (
+                <ul className="message-list" ref={messageList}>
+                    {props.messages[props.currentConv].map((message, index) => (
+                        <li className="message" key={index}>
+                            {message}
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="no-message">
+                    This is the beginning of your conversation with{" "}
+                    {currentFriend}
+                </p>
+            )}
 
             <MsgForm
                 addNewMessage={props.addNewMessage}
