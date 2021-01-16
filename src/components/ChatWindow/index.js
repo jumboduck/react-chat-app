@@ -17,9 +17,13 @@ const ChatWindow = (props) => {
     return (
         <div className="chat-window">
             <ul className="message-list" ref={messageList}>
-                {props.messages[props.currentConv].map((message, index) => (
-                    <Message key={index} message={message} />
-                ))}
+                {props.messages.length !== 0 ? (
+                    props.messages[props.currentConv].map((message, index) => (
+                        <Message key={index} message={message} />
+                    ))
+                ) : (
+                    <li>this is the beginning of your conversation</li>
+                )}
             </ul>
 
             <MsgForm

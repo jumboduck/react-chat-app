@@ -1,6 +1,7 @@
 body {
     font-size: 15px;
     height: 100%;
+    color: #464646;
 }
 
 .chat-container {
@@ -24,14 +25,12 @@ body {
     margin: 0.1rem 0;
     cursor: pointer;
     background-color: #addae6;
-    color: #464646;
     text-transform: uppercase;
+    font-weight: bold;
+    color: #464646;
 }
 
-.friend-selected {
-    background-color: #74b2c4;
-}
-
+.friend-selected,
 .friend-btn:hover {
     background-color: #74b2c4;
 }
@@ -56,11 +55,10 @@ ul.message-list {
 
 .message {
     background-color: #addae6;
-    color: #464646;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-bottom: 0.5rem;
     margin-right: 1rem;
-    padding: 0.4rem;
+    padding: 0.4rem 0.8rem;
     float: right;
     clear: both;
 }
@@ -73,22 +71,27 @@ ul.message-list {
 
 .message-input {
     flex: 1 1 auto;
+    border-radius: 20px 0 0 20px;
+    border-right: 0 !important;
 }
 
 .send-message {
     flex: 0 0 2rem;
-    background-color: #addae6;
+    color: #74b2c4;
+    padding-right: 0.8rem !important;
     cursor: pointer;
     border-left: 0 !important;
+    border-radius: 0 20px 20px 0;
+    background-color: #fff;
+    font-size: 1.2rem;
 }
 
 .send-message:hover {
-    background-color: #74b2c4;
+    color: #addae6;
 }
 
 .message-input,
 .send-message {
     padding: 0.5rem;
-    border-radius: 0;
     border: 1px solid #464646;
 }

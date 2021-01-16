@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const MsgForm = (props) => {
     const input = useRef();
@@ -21,7 +23,7 @@ const MsgForm = (props) => {
                 placeholder="Type here..."
             />
             <button type="submit" className="send-message">
-                Send
+                <FontAwesomeIcon icon={faPaperPlane} />
             </button>
         </form>
     );

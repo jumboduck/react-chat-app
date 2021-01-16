@@ -9,6 +9,8 @@ const ChatApp = () => {
         { id: 1, name: "Daniel" },
         { id: 2, name: "Issaaf" },
         { id: 3, name: "Simon" },
+        { id: 4, name: "Tracy" },
+        { id: 5, name: "Whiskey" },
     ];
 
     const addNewMessage = (id, newMessage) => {
@@ -21,6 +23,8 @@ const ChatApp = () => {
         1: ["hi"],
         2: [],
         3: [],
+        4: [],
+        5: [],
     });
 
     return (

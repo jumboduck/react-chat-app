@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 const FriendList = (props) => {
     const handleClick = (event) => {
@@ -8,9 +10,11 @@ const FriendList = (props) => {
     };
     return (
         <div className="friend-list">
-            <h2 className="friends-title">friends</h2>
+            <h2 className="friends-title">
+                <FontAwesomeIcon icon={faUserFriends} /> friends
+            </h2>
 
-            {props.friends.map((friend) => (
+            {props.friends.map((friend) => {
                 <button
                     className={
                         friend.id === props.currentConv
@@ -22,8 +26,8 @@ const FriendList = (props) => {
                     onClick={handleClick}
                 >
                     {friend.name}
-                </button>
-            ))}
+                </button>;
+            })}
         </div>
     );
 };
