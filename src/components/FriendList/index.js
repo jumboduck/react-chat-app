@@ -13,7 +13,7 @@ const FriendList = (props) => {
             <h2 className="friends-title">
                 <FontAwesomeIcon icon={faUserFriends} /> friends
             </h2>
-            {props.friends.map((friend) => {
+            {props.messages.map((friend) => {
                 return (
                     <button
                         className={

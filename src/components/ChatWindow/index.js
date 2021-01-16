@@ -2,10 +2,14 @@ import React, { useEffect, useRef } from "react";
 import MsgForm from "../MsgForm";
 
 const ChatWindow = (props) => {
-    const currentFriend = props.friends.find(
+    const currentFriend = props.messages.find(
         (friend) => friend.id === props.currentConv
     ).name;
     const messageList = useRef(null);
+
+    const currentMessages = props.messages.find(
+        (conv) => conv.id === props.currentConv
+    ).messages;
 
     useEffect(() => {
         if (messageList) {
@@ -18,9 +22,9 @@ const ChatWindow = (props) => {
 
     return (
         <div className="chat-window">
-            {props.messages[props.currentConv].length !== 0 ? (
+            {currentMessages.length !== 0 ? (
                 <ul className="message-list" ref={messageList}>
-                    {props.messages[props.currentConv].map((message, index) => (
+                    {currentMessages.map((message, index) => (
                         <li className="message" key={index}>
                             {message}
                         </li>
