@@ -3,6 +3,10 @@ import Message from "../Message";
 import MsgForm from "../MsgForm";
 
 const ChatWindow = (props) => {
+    // const currentFriend = props.friends.find(
+    //     (friend) => friend.id === props.currentConv
+    // ).name;
+    // console.log(currentFriend);
     const messageList = useRef(null);
 
     useEffect(() => {
@@ -17,12 +21,14 @@ const ChatWindow = (props) => {
     return (
         <div className="chat-window">
             <ul className="message-list" ref={messageList}>
-                {props.messages.length !== 0 ? (
+                {props.messages[props.currentConv].length !== 0 ? (
                     props.messages[props.currentConv].map((message, index) => (
                         <Message key={index} message={message} />
                     ))
                 ) : (
-                    <li>this is the beginning of your conversation</li>
+                    <li className="no-message">
+                        This is the beginning of your conversation
+                    </li>
                 )}
             </ul>
 

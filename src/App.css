@@ -63,6 +63,12 @@ ul.message-list {
     clear: both;
 }
 
+.no-message {
+    text-align: center;
+    color: #bababa;
+    font-size: 0.8rem;
+}
+
 .message-form {
     width: 100%;
     display: flex;

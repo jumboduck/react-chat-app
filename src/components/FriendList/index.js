@@ -13,20 +13,21 @@ const FriendList = (props) => {
             <h2 className="friends-title">
                 <FontAwesomeIcon icon={faUserFriends} /> friends
             </h2>
-
             {props.friends.map((friend) => {
-                <button
-                    className={
-                        friend.id === props.currentConv
-                            ? "friend-btn friend-selected"
-                            : "friend-btn"
-                    }
-                    key={friend.id}
-                    data-conv={friend.id}
-                    onClick={handleClick}
-                >
-                    {friend.name}
-                </button>;
+                return (
+                    <button
+                        className={
+                            friend.id === props.currentConv
+                                ? "friend-btn friend-selected"
+                                : "friend-btn"
+                        }
+                        key={friend.id}
+                        data-conv={friend.id}
+                        onClick={handleClick}
+                    >
+                        {friend.name}
+                    </button>
+                );
             })}
         </div>
     );
