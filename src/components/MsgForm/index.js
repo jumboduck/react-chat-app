@@ -25,6 +25,7 @@ const MsgForm = (props) => {
                 ref={input}
                 className="message-input"
                 placeholder="Type here..."
+                autoComplete="off"
             />
             <button type="submit" className="send-message">
                 <span className="sr-only">send</span>

@@ -8,8 +8,13 @@ body {
     display: flex;
 }
 
+.hamburger-icon {
+    display: none;
+}
+
 .friends-title {
     text-align: center;
+    background-color: #f4f4f4;
 }
 
 .friend-list {
@@ -110,4 +115,46 @@ ul.message-list {
     width: 1px;
     height: 1px;
     overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+    .chat-container {
+        display: block;
+    }
+
+    .hamburger-icon {
+        display: block;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        border: 0;
+        font-size: 2rem;
+        background: none;
+    }
+
+    .friends-title {
+        height: 3rem;
+        margin: 0;
+        padding-top: 1rem;
+    }
+
+    .friend-list {
+        height: auto;
+    }
+
+    .friends-buttons {
+        height: auto;
+        max-height: 150px;
+        overflow: scroll;
+        position: absolute;
+        width: 100%;
+    }
+
+    .chat-window {
+        height: calc(100vh - 4rem);
+    }
+
+    .hidden-mobile {
+        display: none;
+    }
 }
