@@ -5,34 +5,33 @@ import FriendList from "../FriendList";
 const ChatApp = () => {
     const [currentConv, setCurrentConv] = useState("1");
 
-    const [messages, setMessages] = useState([
-        { id: "1", name: "Daniel", messages: ["hello"] },
-        { id: "2", name: "Issaaf", messages: [] },
-        { id: "3", name: "Simon", messages: [] },
-        { id: "4", name: "Tracy", messages: [] },
-        { id: "5", name: "Whiskey", messages: [] },
-    ]);
+    const [data, setData] = useState({
+        1: { name: "Daniel", messages: [] },
+        2: { name: "Issaaf", messages: [] },
+        3: { name: "Simon", messages: [] },
+        4: { name: "Tracy", messages: [] },
+        5: { name: "Whiskey", messages: [] },
+    });
 
-    const addNewMessage = (id, newMessage) => {
-        const selectedConv = messages.find((conv) => conv.id === id);
-        selectedConv.messages.push(newMessage);
-        let updatedMessages = messages.map((conv) =>
-            conv.id !== id ? conv : selectedConv
-        );
-        setMessages(updatedMessages);
+    const addNewMessage = (newMessage) => {
+        const selectedConv = data[currentConv];
+        const time = new Date().toLocaleString();
+        selectedConv.messages.push({ message: newMessage, time: time });
+        const updatedData = { ...data };
+        updatedData[currentConv] = selectedConv;
+        setData(updatedData);
     };
 
     return (
         <>
             <div className="chat-container">
                 <FriendList
-                    messages={messages}
+                    data={data}
                     currentConv={currentConv}
                     setCurrentConv={setCurrentConv}
                 />
                 <ChatWindow
-                    messages={messages}
-                    currentConv={currentConv}
+                    messages={data[currentConv]}
                     addNewMessage={addNewMessage}
                 />
             </div>

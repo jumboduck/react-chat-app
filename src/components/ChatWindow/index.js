@@ -1,32 +1,29 @@
 import React, { useEffect, useRef } from "react";
 import MsgForm from "../MsgForm";
+import Message from "../Message";
 
 const ChatWindow = (props) => {
-    const currentFriend = props.messages.find(
-        (friend) => friend.id === props.currentConv
-    ).name;
+    const currentFriend = props.messages.name;
     const messageList = useRef(null);
 
-    const currentMessages = props.messages.find(
-        (conv) => conv.id === props.currentConv
-    ).messages;
+    const currentMessages = props.messages.messages;
 
-    useEffect(() => {
-        if (messageList) {
-            messageList.current.addEventListener("DOMNodeInserted", (event) => {
-                const { currentTarget: target } = event;
-                target.scroll({ top: target.scrollHeight });
-            });
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (messageList) {
+    //         messageList.current.addEventListener("DOMNodeInserted", (event) => {
+    //             const { currentTarget: target } = event;
+    //             target.scroll({ top: target.scrollHeight });
+    //         });
+    //     }
+    // }, []);
 
     return (
         <div className="chat-window">
             {currentMessages.length !== 0 ? (
                 <ul className="message-list" ref={messageList}>
                     {currentMessages.map((message, index) => (
-                        <li className="message" key={index}>
-                            {message}
+                        <li key={index}>
+                            <Message message={message} />
                         </li>
                     ))}
                 </ul>
@@ -37,10 +34,7 @@ const ChatWindow = (props) => {
                 </p>
             )}
 
-            <MsgForm
-                addNewMessage={props.addNewMessage}
-                currentConv={props.currentConv}
-            />
+            <MsgForm addNewMessage={props.addNewMessage} />
         </div>
     );
 };

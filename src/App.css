@@ -61,11 +61,18 @@ ul.message-list {
 .message {
     background-color: #addae6;
     border-radius: 20px;
-    margin-bottom: 0.5rem;
-    margin-right: 1rem;
+    margin: 0 1rem 0 1rem;
     padding: 0.4rem 0.8rem;
     float: right;
     clear: both;
+}
+
+.msg-date {
+    float: right;
+    clear: both;
+    margin: 0.2rem 1.2rem 1rem 0;
+    color: #bababa;
+    font-size: 0.5rem;
 }
 
 .no-message {

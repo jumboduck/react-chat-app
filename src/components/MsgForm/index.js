@@ -9,7 +9,7 @@ const MsgForm = (props) => {
         event.preventDefault();
 
         if (input.current.value.length > 0) {
-            props.addNewMessage(props.currentConv, input.current.value);
+            props.addNewMessage(input.current.value);
             input.current.value = "";
         }
     };

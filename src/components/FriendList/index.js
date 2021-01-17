@@ -18,6 +18,12 @@ const FriendList = (props) => {
         setDisplayFriends(!displayFriends);
     };
 
+    let friendList = [];
+    for (const [key, value] of Object.entries(props.data)) {
+        friendList.push({ name: value.name, id: key });
+    }
+    console.log(friendList);
+
     return (
         <div className="friend-list">
             <h2 className="friends-title">
@@ -37,7 +43,7 @@ const FriendList = (props) => {
                         : "friend-buttons hidden-mobile"
                 }
             >
-                {props.messages.map((friend) => {
+                {friendList.map((friend) => {
                     return (
                         <button
                             className={
