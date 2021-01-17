@@ -28,10 +28,13 @@ const ChatWindow = (props) => {
                     ))}
                 </ul>
             ) : (
-                <p className="no-message" ref={messageList}>
-                    This is the beginning of your conversation with{" "}
-                    {currentFriend}
-                </p>
+                <>
+                    <ul className="message-list" ref={messageList}></ul>
+                    <p className="no-message">
+                        This is the beginning of your conversation with{" "}
+                        {currentFriend}
+                    </p>
+                </>
             )}
 
             <MsgForm addNewMessage={props.addNewMessage} />
