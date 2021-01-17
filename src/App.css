@@ -43,6 +43,7 @@ body {
 .friend-form {
     width: 80% !important;
     padding: 1rem;
+    margin: auto;
 }
 
 .chat-window {
@@ -61,6 +62,7 @@ ul.message-list {
     overflow-x: scroll;
     overflow-y: auto;
     width: 100%;
+    margin: 0;
 }
 
 .message {
@@ -160,6 +162,7 @@ ul.message-list {
         overflow: scroll;
         position: absolute;
         width: 100%;
+        background-color: #f4f4f4;
     }
 
     .chat-window {

@@ -23,7 +23,6 @@ const FriendList = (props) => {
     for (const [key, value] of Object.entries(props.data)) {
         friendList.push({ name: value.name, id: key });
     }
-    console.log(friendList);
 
     return (
         <div className="friend-list">
