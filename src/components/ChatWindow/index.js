@@ -19,23 +19,20 @@ const ChatWindow = (props) => {
 
     return (
         <div className="chat-window">
-            {currentMessages.length !== 0 ? (
-                <ul className="message-list" ref={messageList}>
-                    {currentMessages.map((message, index) => (
+            <ul className="message-list" ref={messageList}>
+                {currentMessages.length !== 0 ? (
+                    currentMessages.map((message, index) => (
                         <li key={index}>
                             <Message message={message} />
                         </li>
-                    ))}
-                </ul>
-            ) : (
-                <>
-                    <ul className="message-list" ref={messageList}></ul>
-                    <p className="no-message">
+                    ))
+                ) : (
+                    <li className="no-message">
                         This is the beginning of your conversation with{" "}
                         {currentFriend}
-                    </p>
-                </>
-            )}
+                    </li>
+                )}
+            </ul>
 
             <MsgForm addNewMessage={props.addNewMessage} />
         </div>
