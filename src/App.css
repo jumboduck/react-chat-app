@@ -40,6 +40,11 @@ body {
     background-color: #74b2c4;
 }
 
+.friend-form {
+    width: 80% !important;
+    padding: 1rem;
+}
+
 .chat-window {
     padding: 0 0.4rem;
     display: flex;

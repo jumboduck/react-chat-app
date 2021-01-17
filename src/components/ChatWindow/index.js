@@ -4,9 +4,9 @@ import Message from "../Message";
 
 const ChatWindow = (props) => {
     const currentFriend = props.messages.name;
-    const messageList = useRef(null);
-
     const currentMessages = props.messages.messages;
+
+    const messageList = useRef(null);
 
     // useEffect(() => {
     //     if (messageList) {

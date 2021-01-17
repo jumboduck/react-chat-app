@@ -22,6 +22,14 @@ const ChatApp = () => {
         setData(updatedData);
     };
 
+    const addNewFriend = (name) => {
+        const keys = Object.keys(data).map((x) => parseInt(x));
+        const newKey = Math.max(...keys) + 1;
+        const updatedData = { ...data };
+        updatedData[newKey] = { name: name, messages: [] };
+        setData(updatedData);
+    };
+
     return (
         <>
             <div className="chat-container">
@@ -29,6 +37,7 @@ const ChatApp = () => {
                     data={data}
                     currentConv={currentConv}
                     setCurrentConv={setCurrentConv}
+                    addNewFriend={addNewFriend}
                 />
                 <ChatWindow
                     messages={data[currentConv]}

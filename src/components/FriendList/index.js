@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NewFriendForm from "../NewFriendForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -59,6 +60,7 @@ const FriendList = (props) => {
                         </button>
                     );
                 })}
+                <NewFriendForm addNewFriend={props.addNewFriend} />
             </div>
         </div>
     );
