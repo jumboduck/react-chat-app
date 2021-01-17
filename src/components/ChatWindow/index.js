@@ -39,7 +39,6 @@ const ChatWindow = (props) => {
 
             <MsgForm
                 addNewMessage={props.addNewMessage}
-                messages={props.messages}
                 currentConv={props.currentConv}
             />
         </div>

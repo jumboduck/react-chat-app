@@ -8,12 +8,13 @@ const FriendList = (props) => {
         event.preventDefault();
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
-        handleDisplayFriends();
+        setDisplayFriends(false);
     };
 
     const [displayFriends, setDisplayFriends] = useState(false);
 
-    const handleDisplayFriends = () => {
+    const handleDisplayFriends = (event) => {
+        event.preventDefault();
         setDisplayFriends(!displayFriends);
     };
 
