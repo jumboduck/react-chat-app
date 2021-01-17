@@ -8,14 +8,14 @@ const ChatWindow = (props) => {
 
     const messageList = useRef(null);
 
-    // useEffect(() => {
-    //     if (messageList) {
-    //         messageList.current.addEventListener("DOMNodeInserted", (event) => {
-    //             const { currentTarget: target } = event;
-    //             target.scroll({ top: target.scrollHeight });
-    //         });
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (messageList) {
+            messageList.current.addEventListener("DOMNodeInserted", (event) => {
+                const { currentTarget: target } = event;
+                target.scroll({ top: target.scrollHeight });
+            });
+        }
+    }, []);
 
     return (
         <div className="chat-window">
@@ -28,7 +28,7 @@ const ChatWindow = (props) => {
                     ))}
                 </ul>
             ) : (
-                <p className="no-message">
+                <p className="no-message" ref={messageList}>
                     This is the beginning of your conversation with{" "}
                     {currentFriend}
                 </p>

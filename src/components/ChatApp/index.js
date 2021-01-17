@@ -28,6 +28,7 @@ const ChatApp = () => {
         const updatedData = { ...data };
         updatedData[newKey] = { name: name, messages: [] };
         setData(updatedData);
+        setCurrentConv(newKey.toString());
     };
 
     return (

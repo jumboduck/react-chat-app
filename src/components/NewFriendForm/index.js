@@ -24,7 +24,7 @@ const NewFriendForm = (props) => {
                 type="text"
                 ref={input}
                 className="message-input"
-                placeholder="Friend's name"
+                placeholder="Add a friend"
                 autoComplete="off"
             />
             <button type="submit" className="send-message">
