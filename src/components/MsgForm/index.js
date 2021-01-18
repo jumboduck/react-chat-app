@@ -2,9 +2,13 @@ import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * This renders the form to send a new message.
+ */
 const MsgForm = (props) => {
     const input = useRef();
 
+    /** This functions handles the submission of the new message form */
     const handleSubmit = (event) => {
         event.preventDefault();
 

@@ -4,7 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Renders the friend list
+ */
 const FriendList = (props) => {
+    /**
+     * Switches conversation when a friend button is clicked
+     * @param {onClick} event
+     */
     const handleClick = (event) => {
         event.preventDefault();
         const newConv = event.target.dataset.conv;
@@ -12,13 +19,24 @@ const FriendList = (props) => {
         setDisplayFriends(false);
     };
 
+    /**
+     * This state is used for small screen sizes only, allows to display or hide
+     * the friend list
+     */
     const [displayFriends, setDisplayFriends] = useState(false);
 
+    /**
+     * Displays and hides the friend list
+     * @param {onClick} event
+     */
     const handleDisplayFriends = (event) => {
         event.preventDefault();
         setDisplayFriends(!displayFriends);
     };
 
+    /**
+     * friendList is an array containing the friend names and their id
+     */
     let friendList = [];
     for (const [key, value] of Object.entries(props.data)) {
         friendList.push({ name: value.name, id: key });

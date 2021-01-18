@@ -2,9 +2,13 @@ import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * This component renders the form to add a new friend
+ */
 const NewFriendForm = (props) => {
     const input = useRef();
 
+    /** Handles the submission of the new friend form */
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -17,7 +21,7 @@ const NewFriendForm = (props) => {
     return (
         <form className="message-form friend-form" onSubmit={handleSubmit}>
             <label htmlFor="new-friend" className="sr-only">
-                Friend's Name
+                Enter new friend's Name
             </label>
             <input
                 id="new-friend"
