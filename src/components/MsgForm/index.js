@@ -40,8 +40,10 @@ const MsgForm = (props) => {
         setDisplayEmojis(!displayEmojis);
 
         const cursorPosition = input.current.selectionStart;
+        const selectionLength =
+            input.current.selectionEnd - input.current.selectionStart;
         const textArray = input.current.value.split("");
-        textArray.splice(cursorPosition, 0, emojiObject.emoji);
+        textArray.splice(cursorPosition, selectionLength, emojiObject.emoji);
         const newText = textArray.join("");
         input.current.value = newText;
         input.current.focus();
@@ -57,11 +59,13 @@ const MsgForm = (props) => {
             <div className={displayEmojis ? "emoji-picker" : "hidden"}>
                 <Picker disableAutoFocus={true} onEmojiClick={onEmojiClick} />
             </div>
-            <FontAwesomeIcon
+            <button
+                type="button"
                 className="open-emojis"
-                icon={faSmile}
                 onClick={handleDisplayPicker}
-            />
+            >
+                <FontAwesomeIcon icon={faSmile} />
+            </button>
             <input
                 id="message-input"
                 type="text"

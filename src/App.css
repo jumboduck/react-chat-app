@@ -137,6 +137,9 @@ ul.message-list {
     top: 0.5rem;
     left: 0.5rem;
     cursor: pointer;
+    border: 0;
+    background: none;
+    padding: 0;
 }
 
 .emoji-picker {
