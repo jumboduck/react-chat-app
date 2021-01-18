@@ -31,10 +31,22 @@ const MsgForm = (props) => {
         setDisplayEmojis(!displayEmojis);
     };
 
+    /**
+     * Adds an emoji in the string of the input, at the curor's current position
+     * Browser focus then returns to the text input and places the cursor after the
+     * emoji
+     */
     const onEmojiClick = (event, emojiObject) => {
         setDisplayEmojis(!displayEmojis);
-        input.current.value += emojiObject.emoji;
+
+        const cursorPosition = input.current.selectionStart;
+        const textArray = input.current.value.split("");
+        textArray.splice(cursorPosition, 0, emojiObject.emoji);
+        const newText = textArray.join("");
+        input.current.value = newText;
         input.current.focus();
+        input.current.selectionStart = input.current.selectionEnd =
+            cursorPosition + 1;
     };
 
     return (
