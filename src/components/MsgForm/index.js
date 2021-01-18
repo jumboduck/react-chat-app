@@ -31,13 +31,19 @@ const MsgForm = (props) => {
         setDisplayEmojis(!displayEmojis);
     };
 
+    const onEmojiClick = (event, emojiObject) => {
+        setDisplayEmojis(!displayEmojis);
+        input.current.value += emojiObject.emoji;
+        input.current.focus();
+    };
+
     return (
         <form className="message-form" onSubmit={handleSubmit}>
             <label htmlFor="message-input" className="sr-only">
                 Message:
             </label>
             <div className={displayEmojis ? "emoji-picker" : "hidden"}>
-                <Picker />
+                <Picker disableAutoFocus={true} onEmojiClick={onEmojiClick} />
             </div>
             <FontAwesomeIcon
                 className="open-emojis"
