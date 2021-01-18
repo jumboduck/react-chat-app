@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faSmile } from "@fortawesome/free-solid-svg-icons";
+import Picker from "emoji-picker-react";
 
 /**
  * This renders the form to send a new message.
@@ -18,11 +19,31 @@ const MsgForm = (props) => {
         }
     };
 
+    /** This state defines if the emoji picker is visible or not */
+    const [displayEmojis, setDisplayEmojis] = useState(false);
+
+    /**
+     * This function handles displaying or hiding the emoji picker on click
+     * @param {onClick} event
+     */
+    const handleDisplayPicker = (event) => {
+        event.preventDefault();
+        setDisplayEmojis(!displayEmojis);
+    };
+
     return (
         <form className="message-form" onSubmit={handleSubmit}>
             <label htmlFor="message-input" className="sr-only">
                 Message:
             </label>
+            <div className={displayEmojis ? "emoji-picker" : "hidden"}>
+                <Picker />
+            </div>
+            <FontAwesomeIcon
+                className="open-emojis"
+                icon={faSmile}
+                onClick={handleDisplayPicker}
+            />
             <input
                 id="message-input"
                 type="text"

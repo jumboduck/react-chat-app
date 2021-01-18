@@ -27,7 +27,7 @@ const NewFriendForm = (props) => {
                 id="new-friend"
                 type="text"
                 ref={input}
-                className="message-input"
+                className="new-friend"
                 placeholder="Add a friend"
                 autoComplete="off"
             />
