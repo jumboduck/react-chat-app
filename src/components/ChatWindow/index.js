@@ -44,7 +44,12 @@ const ChatWindow = (props) => {
                 </p>
             ) : null}
 
-            <MsgForm addNewMessage={props.addNewMessage} />
+            <MsgForm
+                addNewMessage={props.addNewMessage}
+                updateSaved={props.updateSaved}
+                setSavedMsg={props.setSavedMsg}
+                savedMsg={props.savedMsg}
+            />
         </div>
     );
 };

@@ -14,8 +14,10 @@ const FriendList = (props) => {
      */
     const handleClick = (event) => {
         event.preventDefault();
+        props.updateSaved(props.savedMsg);
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
+        props.setSavedMsg(props.data[newConv].saved);
         setDisplayFriends(false);
     };
 

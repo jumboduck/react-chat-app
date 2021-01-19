@@ -12,11 +12,15 @@ const MsgForm = (props) => {
     /** This functions handles the submission of the new message form */
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        if (input.current.value.length > 0) {
+        let trimmedMsg = input.current.value.trim();
+        if (trimmedMsg.length > 0) {
             props.addNewMessage(input.current.value);
-            input.current.value = "";
+            props.setSavedMsg("");
         }
+    };
+
+    const handleChange = (event) => {
+        props.setSavedMsg(event.currentTarget.value);
     };
 
     /** This state defines if the emoji picker is visible or not */
@@ -73,6 +77,8 @@ const MsgForm = (props) => {
                 className="message-input"
                 placeholder="Type here..."
                 autoComplete="off"
+                onChange={handleChange}
+                value={props.savedMsg || ""}
             />
             <button type="submit" className="send-message">
                 <span className="sr-only">send</span>

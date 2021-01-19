@@ -15,12 +15,22 @@ const ChatApp = () => {
      * The data object holds all friends and their related messages
      */
     const [data, setData] = useState({
-        1: { name: "Daniel", messages: [] },
-        2: { name: "Issaaf", messages: [] },
-        3: { name: "Simon", messages: [] },
-        4: { name: "Tracy", messages: [] },
-        5: { name: "Whiskey", messages: [] },
+        1: { name: "Daniel", messages: [], saved: "" },
+        2: { name: "Issaaf", messages: [], saved: "" },
+        3: { name: "Simon", messages: [], saved: "" },
+        4: { name: "Tracy", messages: [], saved: "" },
+        5: { name: "Whiskey", messages: [], saved: "" },
     });
+
+    const [savedMsg, setSavedMsg] = useState("");
+
+    const updateSaved = (msg) => {
+        const selectedConv = data[currentConv];
+        selectedConv.saved = msg;
+        const updatedData = { ...data };
+        updatedData[currentConv] = selectedConv;
+        setData(updatedData);
+    };
 
     /**
      * Add a message to the current conversation
@@ -56,10 +66,16 @@ const ChatApp = () => {
                     currentConv={currentConv}
                     setCurrentConv={setCurrentConv}
                     addNewFriend={addNewFriend}
+                    updateSaved={updateSaved}
+                    savedMsg={savedMsg}
+                    setSavedMsg={setSavedMsg}
                 />
                 <ChatWindow
                     messages={data[currentConv]}
                     addNewMessage={addNewMessage}
+                    updateSaved={updateSaved}
+                    setSavedMsg={setSavedMsg}
+                    savedMsg={savedMsg}
                 />
             </div>
         </>
