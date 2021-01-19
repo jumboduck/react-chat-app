@@ -11,6 +11,9 @@ const ChatApp = () => {
      */
     const [currentConv, setCurrentConv] = useState("1");
 
+    const [editMode, setEditMode] = useState(false);
+    const [editIndex, setEditIndex] = useState(null);
+
     /**
      * The data object holds all friends and their related messages
      */
@@ -35,6 +38,17 @@ const ChatApp = () => {
         setData(updatedData);
     };
 
+    const updateMessage = (id, newMessage) => {
+        const selectedConv = data[currentConv];
+        const time = new Date().toLocaleString();
+        selectedConv.messages[id].message = newMessage;
+        selectedConv.messages[id].edit = time;
+        const updatedData = { ...data };
+        updatedData[currentConv] = selectedConv;
+        setData(updatedData);
+        setEditMode(false);
+    };
+
     /**
      * Add a new friend with empty messages to the data state
      * @param {string} name
@@ -56,10 +70,16 @@ const ChatApp = () => {
                     currentConv={currentConv}
                     setCurrentConv={setCurrentConv}
                     addNewFriend={addNewFriend}
+                    setEditMode={setEditMode}
                 />
                 <ChatWindow
                     messages={data[currentConv]}
                     addNewMessage={addNewMessage}
+                    editMode={editMode}
+                    setEditMode={setEditMode}
+                    editIndex={editIndex}
+                    setEditIndex={setEditIndex}
+                    updateMessage={updateMessage}
                 />
             </div>
         </>

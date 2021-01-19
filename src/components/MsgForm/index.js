@@ -9,13 +9,21 @@ import Picker from "emoji-picker-react";
 const MsgForm = (props) => {
     const input = useRef();
 
+    const defaultValue = props.editMode
+        ? props.currentMessages[props.editIndex].message
+        : null;
+
     /** This functions handles the submission of the new message form */
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (input.current.value.length > 0) {
+        if (input.current.value.length > 0 && !props.editMode) {
             props.addNewMessage(input.current.value);
             input.current.value = "";
+        }
+
+        if (props.editMode) {
+            props.updateMessage(props.editIndex, input.current.value);
         }
     };
 
@@ -52,7 +60,11 @@ const MsgForm = (props) => {
     };
 
     return (
-        <form className="message-form" onSubmit={handleSubmit}>
+        <form
+            className="message-form"
+            onSubmit={handleSubmit}
+            key={defaultValue || "key"}
+        >
             <label htmlFor="message-input" className="sr-only">
                 Message:
             </label>
@@ -73,6 +85,7 @@ const MsgForm = (props) => {
                 className="message-input"
                 placeholder="Type here..."
                 autoComplete="off"
+                defaultValue={defaultValue}
             />
             <button type="submit" className="send-message">
                 <span className="sr-only">send</span>

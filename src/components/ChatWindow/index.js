@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MsgForm from "../MsgForm";
 import Message from "../Message";
 
@@ -7,6 +7,11 @@ import Message from "../Message";
  * input for new messages.
  */
 const ChatWindow = (props) => {
+    const enterEditMode = (index) => {
+        props.setEditMode(true);
+        props.setEditIndex(index);
+    };
+
     const currentFriend = props.messages.name;
     const currentMessages = props.messages.messages;
 
@@ -31,7 +36,11 @@ const ChatWindow = (props) => {
                 {currentMessages.length !== 0
                     ? currentMessages.map((message, index) => (
                           <li key={index}>
-                              <Message message={message} />
+                              <Message
+                                  message={message}
+                                  enterEditMode={enterEditMode}
+                                  index={index}
+                              />
                           </li>
                       ))
                     : null}
@@ -44,7 +53,13 @@ const ChatWindow = (props) => {
                 </p>
             ) : null}
 
-            <MsgForm addNewMessage={props.addNewMessage} />
+            <MsgForm
+                currentMessages={currentMessages}
+                addNewMessage={props.addNewMessage}
+                updateMessage={props.updateMessage}
+                editMode={props.editMode}
+                editIndex={props.editIndex}
+            />
         </div>
     );
 };
