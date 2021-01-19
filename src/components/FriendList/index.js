@@ -1,22 +1,48 @@
 import React, { useState } from "react";
+import NewFriendForm from "../NewFriendForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Renders the friend list
+ */
 const FriendList = (props) => {
+    /**
+     * Switches conversation when a friend button is clicked
+     * @param {onClick} event
+     */
     const handleClick = (event) => {
         event.preventDefault();
+        props.updateSaved(props.savedMsg);
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
+        props.setSavedMsg(props.data[newConv].saved);
         setDisplayFriends(false);
     };
 
+    /**
+     * This state is used for small screen sizes only, allows to display or hide
+     * the friend list
+     */
     const [displayFriends, setDisplayFriends] = useState(false);
 
+    /**
+     * Displays and hides the friend list
+     * @param {onClick} event
+     */
     const handleDisplayFriends = (event) => {
         event.preventDefault();
         setDisplayFriends(!displayFriends);
     };
+
+    /**
+     * friendList is an array containing the friend names and their id
+     */
+    let friendList = [];
+    for (const [key, value] of Object.entries(props.data)) {
+        friendList.push({ name: value.name, id: key });
+    }
 
     return (
         <div className="friend-list">
@@ -37,7 +63,7 @@ const FriendList = (props) => {
                         : "friend-buttons hidden-mobile"
                 }
             >
-                {props.messages.map((friend) => {
+                {friendList.map((friend) => {
                     return (
                         <button
                             className={
@@ -53,6 +79,7 @@ const FriendList = (props) => {
                         </button>
                     );
                 })}
+                <NewFriendForm addNewFriend={props.addNewFriend} />
             </div>
         </div>
     );
