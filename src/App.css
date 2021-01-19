@@ -40,6 +40,16 @@ body {
     background-color: #74b2c4;
 }
 
+.friend-form {
+    width: 80% !important;
+    padding: 1rem;
+    margin: auto;
+}
+
+.new-friend {
+    padding-left: 0.5rem !important;
+}
+
 .chat-window {
     padding: 0 0.4rem;
     display: flex;
@@ -56,16 +66,24 @@ ul.message-list {
     overflow-x: scroll;
     overflow-y: auto;
     width: 100%;
+    margin: 0;
 }
 
 .message {
     background-color: #addae6;
     border-radius: 20px;
-    margin-bottom: 0.5rem;
-    margin-right: 1rem;
+    margin: 0 1rem 0 1rem;
     padding: 0.4rem 0.8rem;
     float: right;
     clear: both;
+}
+
+.msg-date {
+    float: right;
+    clear: both;
+    margin: 0.2rem 1.2rem 1rem 0;
+    color: #bababa;
+    font-size: 0.5rem;
 }
 
 .no-message {
@@ -79,9 +97,11 @@ ul.message-list {
     width: 100%;
     display: flex;
     margin-bottom: 0.5rem;
+    position: relative;
 }
 
-.message-input {
+.message-input,
+.new-friend {
     flex: 1 1 auto;
     border-radius: 20px 0 0 20px;
     border-right: 0 !important;
@@ -91,6 +111,7 @@ ul.message-list {
     flex: 0 0 2rem;
     color: #74b2c4;
     padding-right: 0.8rem !important;
+    padding-left: 0.5rem !important;
     cursor: pointer;
     border-left: 0 !important;
     border-radius: 0 20px 20px 0;
@@ -103,9 +124,32 @@ ul.message-list {
 }
 
 .message-input,
-.send-message {
-    padding: 0.5rem;
+.send-message,
+.new-friend {
+    padding: 0.5rem 0.5rem 0.5rem 2.2rem;
     border: 1px solid #464646;
+}
+
+.open-emojis {
+    color: #ffcb4c;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    cursor: pointer;
+    border: 0;
+    background: none;
+    padding: 0;
+}
+
+.emoji-picker {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 1rem;
+}
+
+.hidden {
+    display: none;
 }
 
 .sr-only {
@@ -148,6 +192,7 @@ ul.message-list {
         overflow: scroll;
         position: absolute;
         width: 100%;
+        background-color: #f4f4f4;
     }
 
     .chat-window {

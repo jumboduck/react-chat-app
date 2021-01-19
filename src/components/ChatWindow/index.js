@@ -1,16 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import MsgForm from "../MsgForm";
+import Message from "../Message";
 
+/**
+ * This renders the entire chat window, including the list of messages and the
+ * input for new messages.
+ */
 const ChatWindow = (props) => {
-    const currentFriend = props.messages.find(
-        (friend) => friend.id === props.currentConv
-    ).name;
+    const currentFriend = props.messages.name;
+    const currentMessages = props.messages.messages;
+
     const messageList = useRef(null);
 
-    const currentMessages = props.messages.find(
-        (conv) => conv.id === props.currentConv
-    ).messages;
-
+    /**
+     * This effect ensures the pages scrolls to the bottom of the page if the
+     * height of the message list is longer than the height of its container
+     */
     useEffect(() => {
         if (messageList) {
             messageList.current.addEventListener("DOMNodeInserted", (event) => {
@@ -22,24 +27,28 @@ const ChatWindow = (props) => {
 
     return (
         <div className="chat-window">
-            {currentMessages.length !== 0 ? (
-                <ul className="message-list" ref={messageList}>
-                    {currentMessages.map((message, index) => (
-                        <li className="message" key={index}>
-                            {message}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
+            <ul className="message-list" ref={messageList}>
+                {currentMessages.length !== 0
+                    ? currentMessages.map((message, index) => (
+                          <li key={index}>
+                              <Message message={message} />
+                          </li>
+                      ))
+                    : null}
+            </ul>
+
+            {currentMessages.length === 0 ? (
                 <p className="no-message">
                     This is the beginning of your conversation with{" "}
                     {currentFriend}
                 </p>
-            )}
+            ) : null}
 
             <MsgForm
                 addNewMessage={props.addNewMessage}
-                currentConv={props.currentConv}
+                updateSaved={props.updateSaved}
+                setSavedMsg={props.setSavedMsg}
+                savedMsg={props.savedMsg}
             />
         </div>
     );
