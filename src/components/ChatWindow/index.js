@@ -59,6 +59,8 @@ const ChatWindow = (props) => {
                 updateMessage={props.updateMessage}
                 editMode={props.editMode}
                 editIndex={props.editIndex}
+                enterEditMode={enterEditMode}
+                lastMessageIndex={currentMessages.length - 1}
             />
         </div>
     );

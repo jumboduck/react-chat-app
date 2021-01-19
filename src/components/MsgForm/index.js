@@ -39,6 +39,11 @@ const MsgForm = (props) => {
         setDisplayEmojis(!displayEmojis);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.keyCode === 38 && props.lastMessageIndex >= 0) {
+            props.enterEditMode(props.lastMessageIndex);
+        }
+    };
     /**
      * Adds an emoji in the string of the input, at the curor's current position
      * Browser focus then returns to the text input and places the cursor after the
@@ -86,6 +91,7 @@ const MsgForm = (props) => {
                 placeholder="Type here..."
                 autoComplete="off"
                 defaultValue={defaultValue}
+                onKeyDown={handleKeyPress}
             />
             <button type="submit" className="send-message">
                 <span className="sr-only">send</span>
