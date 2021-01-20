@@ -18,11 +18,11 @@ const ChatApp = () => {
      * The data object holds all friends and their related messages
      */
     const [data, setData] = useState({
-        1: { name: "Daniel", messages: [], saved: "" },
-        2: { name: "Issaaf", messages: [], saved: "" },
-        3: { name: "Simon", messages: [], saved: "" },
-        4: { name: "Tracy", messages: [], saved: "" },
-        5: { name: "Whiskey", messages: [], saved: "" },
+        1: { name: "Daniel", messages: [], saved: "", editMode: false },
+        2: { name: "Issaaf", messages: [], saved: "", editMode: false },
+        3: { name: "Simon", messages: [], saved: "", editMode: false },
+        4: { name: "Tracy", messages: [], saved: "", editMode: false },
+        5: { name: "Whiskey", messages: [], saved: "", editMode: false },
     });
 
     const [savedMsg, setSavedMsg] = useState("");
@@ -48,6 +48,14 @@ const ChatApp = () => {
         setData(updatedData);
     };
 
+    const enterEditMode = (index) => {
+        const savedMessage = data[currentConv].messages[index].message;
+        setEditIndex(index);
+        setSavedMsg(savedMessage);
+        setEditMode(true);
+        msgInput.current.focus();
+    };
+
     const updateMessage = (id, newMessage) => {
         const selectedConv = data[currentConv];
         const time = new Date().toLocaleString();
@@ -68,7 +76,12 @@ const ChatApp = () => {
         const keys = Object.keys(data).map((x) => parseInt(x));
         const newKey = Math.max(...keys) + 1;
         const updatedData = { ...data };
-        updatedData[newKey] = { name: name, messages: [], saved: "" };
+        updatedData[newKey] = {
+            name: name,
+            messages: [],
+            saved: "",
+            editMode: false,
+        };
         setData(updatedData);
         setCurrentConv(newKey.toString());
     };
@@ -85,6 +98,7 @@ const ChatApp = () => {
                     savedMsg={savedMsg}
                     setSavedMsg={setSavedMsg}
                     setEditMode={setEditMode}
+                    msgInput={msgInput}
                 />
                 <ChatWindow
                     messages={data[currentConv]}
@@ -98,6 +112,7 @@ const ChatApp = () => {
                     setEditIndex={setEditIndex}
                     updateMessage={updateMessage}
                     msgInput={msgInput}
+                    enterEditMode={enterEditMode}
                 />
             </div>
         </>

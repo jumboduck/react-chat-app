@@ -7,13 +7,6 @@ import Message from "../Message";
  * input for new messages.
  */
 const ChatWindow = (props) => {
-    const enterEditMode = (index) => {
-        props.setEditIndex(index);
-        props.setSavedMsg(currentMessages[index].message);
-        props.setEditMode(true);
-        props.msgInput.current.focus();
-    };
-
     const currentFriend = props.messages.name;
     const currentMessages = props.messages.messages;
 
@@ -40,7 +33,7 @@ const ChatWindow = (props) => {
                           <li key={index}>
                               <Message
                                   message={message}
-                                  enterEditMode={enterEditMode}
+                                  enterEditMode={props.enterEditMode}
                                   index={index}
                                   editMode={props.editMode}
                                   editIndex={props.editIndex}
@@ -68,7 +61,7 @@ const ChatWindow = (props) => {
                 editMode={props.editMode}
                 setEditMode={props.setEditMode}
                 editIndex={props.editIndex}
-                enterEditMode={enterEditMode}
+                enterEditMode={props.enterEditMode}
                 lastMessageIndex={currentMessages.length - 1}
                 msgInput={props.msgInput}
             />

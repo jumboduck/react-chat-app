@@ -14,11 +14,13 @@ const FriendList = (props) => {
      */
     const handleClick = (event) => {
         event.preventDefault();
+        if (props.editMode) props.setSavedMsg("");
         props.updateSaved(props.savedMsg);
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
         props.setSavedMsg(props.data[newConv].saved);
         props.setEditMode(false);
+        props.msgInput.current.focus();
         setDisplayFriends(false);
     };
 
