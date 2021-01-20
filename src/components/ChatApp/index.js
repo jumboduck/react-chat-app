@@ -39,10 +39,14 @@ const ChatApp = () => {
      * Add a message to the current conversation
      * @param {string} newMessage
      */
-    const addNewMessage = (newMessage) => {
+    const addNewMessage = (newMessage, direction) => {
         const selectedConv = data[currentConv];
         const time = new Date().toLocaleString();
-        selectedConv.messages.push({ message: newMessage, time: time });
+        selectedConv.messages.push({
+            message: newMessage,
+            time: time,
+            direction: direction,
+        });
         const updatedData = { ...data };
         updatedData[currentConv] = selectedConv;
         setData(updatedData);

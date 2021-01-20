@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
+import generatePhrase from "./../../helpers/generatePhrase.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faSmile } from "@fortawesome/free-solid-svg-icons";
 import Picker from "emoji-picker-react";
@@ -10,16 +11,27 @@ const MsgForm = (props) => {
     const input = props.msgInput.current;
 
     /** This functions handles the submission of the new message form */
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         let trimmedMsg = input.value.trim();
         if (trimmedMsg.length > 0 && !props.editMode) {
-            props.addNewMessage(props.savedMsg);
+            props.addNewMessage(props.savedMsg, "outgoing");
             props.setSavedMsg("");
         }
 
         if (props.editMode) {
             props.updateMessage(props.editIndex, props.savedMsg);
+        } else {
+            let phrase = "";
+            const generatedPhrase = async () => {
+                setTimeout(async () => {
+                    const result = await generatePhrase();
+                    phrase = result;
+                    props.addNewMessage(phrase, "incoming");
+                }, 2000);
+            };
+
+            generatedPhrase();
         }
     };
 

@@ -70,19 +70,28 @@ ul.message-list {
 }
 
 .message {
-    background-color: #addae6;
     border-radius: 20px;
     margin: 0 1rem 0 1rem;
     padding: 0.4rem 0.8rem;
-    float: right;
     clear: both;
     border: 0;
-    cursor: pointer;
-    min-height: 2rem;
     text-align: right;
+    font-size: 0.8rem;
+    min-height: 1.1rem;
 }
 
-.message:hover {
+.outgoing .message {
+    background-color: #addae6;
+    float: right;
+    cursor: pointer;
+}
+
+.incoming .message {
+    float: left;
+    background-color: #ddd;
+}
+
+.outgoing .message:hover {
     background-color: #74b2c4;
 }
 
@@ -91,11 +100,18 @@ ul.message-list {
 }
 
 .msg-date {
-    float: right;
     clear: both;
-    margin: 0.2rem 1.2rem 1rem 0;
+    margin: 0.2rem 1.2rem 1rem 1.2rem;
     color: #bababa;
     font-size: 0.5rem;
+}
+
+.outgoing .msg-date {
+    float: right;
+}
+
+.incoming .msg-date {
+    float: left;
 }
 
 .no-message {

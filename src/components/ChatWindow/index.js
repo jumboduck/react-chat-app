@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import generatePhrase from "./../../helpers/generatePhrase.js";
 import MsgForm from "../MsgForm";
 import Message from "../Message";
 
