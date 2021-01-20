@@ -53,15 +53,15 @@ const MsgForm = (props) => {
 
     /** Edit the latest message when up arrow is pressed */
     const handleKeyPress = (event) => {
-        let testIndex = props.lastMessageIndex;
-        while (props.currentMessages[testIndex].direction === "incoming") {
-            testIndex--;
-        }
         if (
             event.keyCode === 38 &&
             props.lastMessageIndex >= 0 &&
             props.editMode === false
         ) {
+            let testIndex = props.lastMessageIndex;
+            while (props.currentMessages[testIndex].direction === "incoming") {
+                testIndex--;
+            }
             input.blur();
             setTimeout(() => {
                 props.enterEditMode(testIndex);
