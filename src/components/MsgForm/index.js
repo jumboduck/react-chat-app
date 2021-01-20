@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faSmile } from "@fortawesome/free-solid-svg-icons";
 import Picker from "emoji-picker-react";
@@ -7,15 +7,19 @@ import Picker from "emoji-picker-react";
  * This renders the form to send a new message.
  */
 const MsgForm = (props) => {
-    const input = useRef();
+    const input = props.msgInput.current;
 
     /** This functions handles the submission of the new message form */
     const handleSubmit = (event) => {
         event.preventDefault();
-        let trimmedMsg = input.current.value.trim();
-        if (trimmedMsg.length > 0) {
-            props.addNewMessage(input.current.value);
+        let trimmedMsg = input.value.trim();
+        if (trimmedMsg.length > 0 && !props.editMode) {
+            props.addNewMessage(props.savedMsg);
             props.setSavedMsg("");
+        }
+
+        if (props.editMode) {
+            props.updateMessage(props.editIndex, props.savedMsg);
         }
     };
 
@@ -35,28 +39,43 @@ const MsgForm = (props) => {
         setDisplayEmojis(!displayEmojis);
     };
 
+    /** Edit the latest message when up arrow is pressed */
+    const handleKeyPress = (event) => {
+        if (
+            event.keyCode === 38 &&
+            props.lastMessageIndex >= 0 &&
+            props.editMode === false
+        ) {
+            input.blur();
+            setTimeout(() => {
+                props.enterEditMode(props.lastMessageIndex);
+            }, 0);
+        }
+    };
     /**
      * Adds an emoji in the string of the input, at the curor's current position
      * Browser focus then returns to the text input and places the cursor after the
      * emoji
      */
     const onEmojiClick = (event, emojiObject) => {
-        setDisplayEmojis(!displayEmojis);
-        const cursorPosition = input.current.selectionStart;
-        const selectionLength =
-            input.current.selectionEnd - input.current.selectionStart;
-        const textArray = input.current.value.split("");
+        setDisplayEmojis(false);
+        const cursorPosition = input.selectionStart;
+        const selectionLength = input.selectionEnd - input.selectionStart;
+        const textArray = input.value.split("");
         textArray.splice(cursorPosition, selectionLength, emojiObject.emoji);
         const newText = textArray.join("");
         props.setSavedMsg(newText);
 
-        input.current.focus();
-        input.current.selectionStart = input.current.selectionEnd =
-            cursorPosition + 1;
+        input.focus();
+        input.selectionStart = input.selectionEnd = cursorPosition + 1;
     };
 
     return (
-        <form className="message-form" onSubmit={handleSubmit}>
+        <form
+            className="message-form"
+            onSubmit={handleSubmit}
+            key={"MessageForm"}
+        >
             <label htmlFor="message-input" className="sr-only">
                 Message:
             </label>
@@ -73,12 +92,13 @@ const MsgForm = (props) => {
             <input
                 id="message-input"
                 type="text"
-                ref={input}
+                ref={props.msgInput}
                 className="message-input"
                 placeholder="Type here..."
                 autoComplete="off"
                 onChange={handleChange}
                 value={props.savedMsg || ""}
+                onKeyDown={handleKeyPress}
             />
             <button type="submit" className="send-message">
                 <span className="sr-only">send</span>

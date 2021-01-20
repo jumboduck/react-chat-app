@@ -76,6 +76,16 @@ ul.message-list {
     padding: 0.4rem 0.8rem;
     float: right;
     clear: both;
+    border: 0;
+    cursor: pointer;
+}
+
+.message:hover {
+    background-color: #74b2c4;
+}
+
+.editing {
+    background-color: #74b2c4;
 }
 
 .msg-date {

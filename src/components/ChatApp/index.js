@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ChatWindow from "../ChatWindow";
 import FriendList from "../FriendList";
 
@@ -10,6 +10,9 @@ const ChatApp = () => {
      * The currentConv state determines the conversation currently rendered
      */
     const [currentConv, setCurrentConv] = useState("1");
+    const [editMode, setEditMode] = useState(false);
+    const [editIndex, setEditIndex] = useState(null);
+    const msgInput = useRef();
 
     /**
      * The data object holds all friends and their related messages
@@ -45,6 +48,18 @@ const ChatApp = () => {
         setData(updatedData);
     };
 
+    const updateMessage = (id, newMessage) => {
+        const selectedConv = data[currentConv];
+        const time = new Date().toLocaleString();
+        selectedConv.messages[id].message = newMessage;
+        selectedConv.messages[id].edit = time;
+        const updatedData = { ...data };
+        updatedData[currentConv] = selectedConv;
+        setData(updatedData);
+        setEditMode(false);
+        setSavedMsg("");
+    };
+
     /**
      * Add a new friend with empty messages to the data state
      * @param {string} name
@@ -53,7 +68,7 @@ const ChatApp = () => {
         const keys = Object.keys(data).map((x) => parseInt(x));
         const newKey = Math.max(...keys) + 1;
         const updatedData = { ...data };
-        updatedData[newKey] = { name: name, messages: [] };
+        updatedData[newKey] = { name: name, messages: [], saved: "" };
         setData(updatedData);
         setCurrentConv(newKey.toString());
     };
@@ -69,6 +84,7 @@ const ChatApp = () => {
                     updateSaved={updateSaved}
                     savedMsg={savedMsg}
                     setSavedMsg={setSavedMsg}
+                    setEditMode={setEditMode}
                 />
                 <ChatWindow
                     messages={data[currentConv]}
@@ -76,6 +92,12 @@ const ChatApp = () => {
                     updateSaved={updateSaved}
                     setSavedMsg={setSavedMsg}
                     savedMsg={savedMsg}
+                    editMode={editMode}
+                    setEditMode={setEditMode}
+                    editIndex={editIndex}
+                    setEditIndex={setEditIndex}
+                    updateMessage={updateMessage}
+                    msgInput={msgInput}
                 />
             </div>
         </>

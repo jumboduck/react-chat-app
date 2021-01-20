@@ -18,6 +18,7 @@ const FriendList = (props) => {
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
         props.setSavedMsg(props.data[newConv].saved);
+        props.setEditMode(false);
         setDisplayFriends(false);
     };
 

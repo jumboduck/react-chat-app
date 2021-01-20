@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MsgForm from "../MsgForm";
 import Message from "../Message";
 
@@ -7,6 +7,13 @@ import Message from "../Message";
  * input for new messages.
  */
 const ChatWindow = (props) => {
+    const enterEditMode = (index) => {
+        props.setEditIndex(index);
+        props.setSavedMsg(currentMessages[index].message);
+        props.setEditMode(true);
+        props.msgInput.current.focus();
+    };
+
     const currentFriend = props.messages.name;
     const currentMessages = props.messages.messages;
 
@@ -31,7 +38,13 @@ const ChatWindow = (props) => {
                 {currentMessages.length !== 0
                     ? currentMessages.map((message, index) => (
                           <li key={index}>
-                              <Message message={message} />
+                              <Message
+                                  message={message}
+                                  enterEditMode={enterEditMode}
+                                  index={index}
+                                  editMode={props.editMode}
+                                  editIndex={props.editIndex}
+                              />
                           </li>
                       ))
                     : null}
@@ -49,6 +62,15 @@ const ChatWindow = (props) => {
                 updateSaved={props.updateSaved}
                 setSavedMsg={props.setSavedMsg}
                 savedMsg={props.savedMsg}
+                currentMessages={currentMessages}
+                addNewMessage={props.addNewMessage}
+                updateMessage={props.updateMessage}
+                editMode={props.editMode}
+                setEditMode={props.setEditMode}
+                editIndex={props.editIndex}
+                enterEditMode={enterEditMode}
+                lastMessageIndex={currentMessages.length - 1}
+                msgInput={props.msgInput}
             />
         </div>
     );
