@@ -97,6 +97,7 @@ const ChatApp = () => {
                     updateSaved={updateSaved}
                     savedMsg={savedMsg}
                     setSavedMsg={setSavedMsg}
+                    editMode={editMode}
                     setEditMode={setEditMode}
                     msgInput={msgInput}
                 />

@@ -130,7 +130,12 @@ ul.message-list {
 }
 
 .send-message:hover {
-    color: #addae6;
+    color: #5f92a1;
+}
+
+.editing-input input,
+.editing-input .send-message {
+    background-color: #cdecf5;
 }
 
 .message-input,

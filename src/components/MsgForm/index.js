@@ -72,7 +72,9 @@ const MsgForm = (props) => {
 
     return (
         <form
-            className="message-form"
+            className={
+                props.editMode ? "message-form editing-input" : "message-form"
+            }
             onSubmit={handleSubmit}
             key={"MessageForm"}
         >

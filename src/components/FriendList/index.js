@@ -14,8 +14,8 @@ const FriendList = (props) => {
      */
     const handleClick = (event) => {
         event.preventDefault();
-        if (props.editMode) props.setSavedMsg("");
-        props.updateSaved(props.savedMsg);
+        const newSaveMsg = props.editMode ? "" : props.savedMsg;
+        props.updateSaved(newSaveMsg);
         const newConv = event.target.dataset.conv;
         props.setCurrentConv(newConv);
         props.setSavedMsg(props.data[newConv].saved);
