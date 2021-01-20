@@ -42,14 +42,14 @@ const MsgForm = (props) => {
      */
     const onEmojiClick = (event, emojiObject) => {
         setDisplayEmojis(!displayEmojis);
-
         const cursorPosition = input.current.selectionStart;
         const selectionLength =
             input.current.selectionEnd - input.current.selectionStart;
         const textArray = input.current.value.split("");
         textArray.splice(cursorPosition, selectionLength, emojiObject.emoji);
         const newText = textArray.join("");
-        input.current.value = newText;
+        props.setSavedMsg(newText);
+
         input.current.focus();
         input.current.selectionStart = input.current.selectionEnd =
             cursorPosition + 1;
