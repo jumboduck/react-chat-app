@@ -61,13 +61,15 @@ const ChatApp = () => {
     };
 
     const updateMessage = (id, newMessage) => {
-        const selectedConv = data[currentConv];
-        const time = new Date().toLocaleString();
-        selectedConv.messages[id].message = newMessage;
-        selectedConv.messages[id].edit = time;
-        const updatedData = { ...data };
-        updatedData[currentConv] = selectedConv;
-        setData(updatedData);
+        if (newMessage.trim().length > 0) {
+            const selectedConv = data[currentConv];
+            const time = new Date().toLocaleString();
+            selectedConv.messages[id].message = newMessage;
+            selectedConv.messages[id].edit = time;
+            const updatedData = { ...data };
+            updatedData[currentConv] = selectedConv;
+            setData(updatedData);
+        }
         setEditMode(false);
         setSavedMsg("");
     };
