@@ -13,15 +13,18 @@ const MsgForm = (props) => {
     /** This functions handles the submission of the new message form */
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let trimmedMsg = input.value.trim();
-        if (trimmedMsg.length > 0 && !props.editMode) {
-            props.addNewMessage(props.savedMsg, "outgoing");
-            props.setSavedMsg("");
+        /* We ensure the message is not empty, and trim any extra space
+         * before sending */
+        let trimmedMsg = props.savedMsg.trim();
+
+        if (trimmedMsg.length > 0) {
+            !props.editMode
+                ? props.addNewMessage(trimmedMsg, "outgoing")
+                : props.updateMessage(trimmedMsg);
         }
 
-        if (props.editMode) {
-            props.updateMessage(props.editIndex, props.savedMsg);
-        } else {
+        /* If editMode is off, a new response is generated  */
+        if (!props.editMode) {
             let phrase = "";
             const generatedPhrase = async () => {
                 setTimeout(async () => {
@@ -35,6 +38,7 @@ const MsgForm = (props) => {
         }
     };
 
+    /** Update the saved message when the input changes */
     const handleChange = (event) => {
         props.setSavedMsg(event.currentTarget.value);
     };
@@ -58,6 +62,7 @@ const MsgForm = (props) => {
             props.lastMessageIndex >= 0 &&
             props.editMode === false
         ) {
+            // Find the index of the latest outgoing message
             let testIndex = props.lastMessageIndex;
             while (props.currentMessages[testIndex].direction === "incoming") {
                 testIndex--;

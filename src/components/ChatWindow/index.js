@@ -10,7 +10,6 @@ import Message from "../Message";
 const ChatWindow = (props) => {
     const currentFriend = props.messages.name;
     const currentMessages = props.messages.messages;
-
     const messageList = useRef(null);
 
     /**

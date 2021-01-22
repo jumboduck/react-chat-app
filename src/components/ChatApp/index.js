@@ -10,8 +10,13 @@ const ChatApp = () => {
      * The currentConv state determines the conversation currently rendered
      */
     const [currentConv, setCurrentConv] = useState("1");
+
+    /** The editMode state defines if a message is being edited or not */
     const [editMode, setEditMode] = useState(false);
+
+    /** editIndex holds the index of the message currently being edited */
     const [editIndex, setEditIndex] = useState(null);
+
     const msgInput = useRef();
 
     /**
@@ -25,19 +30,15 @@ const ChatApp = () => {
         5: { name: "Whiskey", messages: [], saved: "", editMode: false },
     });
 
+    /**
+     * The savedMsg state hold the text currently displayed in the message input
+     */
     const [savedMsg, setSavedMsg] = useState("");
-
-    const updateSaved = (msg) => {
-        const selectedConv = data[currentConv];
-        selectedConv.saved = msg;
-        const updatedData = { ...data };
-        updatedData[currentConv] = selectedConv;
-        setData(updatedData);
-    };
 
     /**
      * Add a message to the current conversation
      * @param {string} newMessage
+     * @param {string} direction
      */
     const addNewMessage = (newMessage, direction) => {
         const selectedConv = data[currentConv];
@@ -50,8 +51,27 @@ const ChatApp = () => {
         const updatedData = { ...data };
         updatedData[currentConv] = selectedConv;
         setData(updatedData);
+        setSavedMsg("");
     };
 
+    /**
+     * The following function saves any unsent message to that current conversation
+     * object
+     * @param {string} msg The saved message
+     */
+    const updateSaved = (msg) => {
+        const selectedConv = data[currentConv];
+        selectedConv.saved = msg;
+        const updatedData = { ...data };
+        updatedData[currentConv] = selectedConv;
+        setData(updatedData);
+    };
+
+    /**
+     * The following finds the message to be edited, adds this
+     * message to the text input and focuses on it.
+     * @param {number} index The index of the message to be edited
+     */
     const enterEditMode = (index) => {
         const savedMessage = data[currentConv].messages[index].message;
         setEditIndex(index);
@@ -60,12 +80,16 @@ const ChatApp = () => {
         msgInput.current.focus();
     };
 
-    const updateMessage = (id, newMessage) => {
+    /**
+     * This message updates a message and turns off "edit mode"
+     * @param {string} newMessage The updated message
+     */
+    const updateMessage = (newMessage) => {
         if (newMessage.trim().length > 0) {
             const selectedConv = data[currentConv];
             const time = new Date().toLocaleString();
-            selectedConv.messages[id].message = newMessage;
-            selectedConv.messages[id].edit = time;
+            selectedConv.messages[editIndex].message = newMessage;
+            selectedConv.messages[editIndex].edit = time;
             const updatedData = { ...data };
             updatedData[currentConv] = selectedConv;
             setData(updatedData);
@@ -76,7 +100,8 @@ const ChatApp = () => {
 
     /**
      * Add a new friend with empty messages to the data state
-     * @param {string} name
+     * And open this conversation.
+     * @param {string} name The name of the new friend
      */
     const addNewFriend = (name) => {
         const keys = Object.keys(data).map((x) => parseInt(x));
