@@ -12,6 +12,8 @@ body {
     display: none;
 }
 
+/* Friend section styling */
+
 .friends-title {
     text-align: center;
     background-color: #f4f4f4;
@@ -49,6 +51,8 @@ body {
 .new-friend {
     padding-left: 0.5rem !important;
 }
+
+/* Chat window styling */
 
 .chat-window {
     padding: 0 0.4rem;
@@ -89,6 +93,7 @@ ul.message-list {
 .incoming .message {
     float: left;
     background-color: #ddd;
+    text-align: left;
 }
 
 .outgoing .message:hover {
@@ -120,6 +125,8 @@ ul.message-list {
     font-size: 0.8rem;
     width: 100%;
 }
+
+/* Message input form */
 
 .message-form {
     width: 100%;
@@ -193,6 +200,8 @@ ul.message-list {
     height: 1px;
     overflow: hidden;
 }
+
+/* Media Queries */
 
 @media only screen and (max-width: 600px) {
     .chat-container {
